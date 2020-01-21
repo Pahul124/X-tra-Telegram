@@ -13,7 +13,7 @@ async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     await alive.edit("**`YO BRO JABTAK YE KHEL KHATAM NHI HOTA APUN IDHARICH HAI ψ(｀∇´)ψ`**\n\n"
                      "`Telethon version: 6.9.0\nPython: 3.7.3\nfork by:` @ItS_PaHuL\n"
-                     "`Bot created by:` [Pahul](tg://user?id=836334838)\n"
+                     "`Bot created by:` [iTsPaHuL](tg://user?id=836334838)\n"
                      "`Database Status: Databases functioning normally!\n\nAlways with you, my master!\n`"
                      f"`My peru owner`: {DEFAULTUSER}\n"
                      "[Deploy this userbot Now](https://github.com/Dark-Princ3/X-tra-Telegram)")
