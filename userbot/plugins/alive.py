@@ -16,7 +16,7 @@ async def amireallyalive(alive):
                      "`Bot created by:` [iTsPaHuL](tg://user?id=836334838)\n"
                      "`Database Status: Databases functioning normally!\n\nAlways with you, my master!\n`"
                      f"`My pROEST oF pros owner`: {DEFAULTUSER}\n"
-                     "[Deploy this userbot Now](https://github.com/Pahul124/X-tra-Telegram)"
+                     "[Deploy this userbot Now](https://github.com/Pahul124/X-tra-Telegram)\n"
                       "APNA TIME AAYA HAI AAYA THA AUR AAYA RAHEGA❤️")
 
   
