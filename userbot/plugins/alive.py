@@ -16,4 +16,4 @@ async def amireallyalive(alive):
                      "`Bot created by:` [iTsPaHuL](tg://user?id=836334838)\n"
                      "`Database Status: Databases functioning normally!\n\nAlways with you, my master!\n`"
                      f"`My pROEST oF pros owner`: {DEFAULTUSER}\n"
-                     "[Deploy this userbot Now](https://github.com/Dark-Princ3/X-tra-Telegram)")
+                     "[Apna TIME Aaya h AAYA THA AND AAYA RAHEGA♥️]
