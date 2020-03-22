@@ -1,33 +1,3 @@
-"""Make / Download Telegram Sticker Packs without installing Third Party applications
-Available Commands:
-.kangsticker [Optional Emoji]
-.packinfo
-.getsticker"""
-from telethon import events
-from io import BytesIO
-from PIL import Image
-import asyncio
-import datetime
-from collections import defaultdict
-import math
-import os
-import requests
-import zipfile
-from telethon.errors.rpcerrorlist import StickersetInvalidError
-from telethon.errors import MessageNotModifiedError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import (
-    DocumentAttributeFilename,
-    DocumentAttributeSticker,
-    InputMediaUploadedDocument,
-    InputPeerNotifySettings,
-    InputStickerSetID,
-    InputStickerSetShortName,
-    MessageMediaPhoto
-)
-from userbot.utils import admin_cmd
-from userbot import ALIVE_NAME
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, check pinned in @XtraTgBot"
 
@@ -118,7 +88,7 @@ async def _(event):
             if "Sorry" in response.text:
                 await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
                 return
-            await silently_send_message(bot_conv, response)
+            await , response)
             await silently_send_message(bot_conv, sticker_emoji)
             await silently_send_message(bot_conv, "/done")
 
@@ -150,14 +120,7 @@ async def _(event):
             )
         )
     )
-    pack_emojis = []
-    for document_sticker in get_stickerset.packs:
-        if document_sticker.emoticon not in pack_emojis:
-            pack_emojis.append(document_sticker.emoticon)
-    await event.edit(f"**Sticker Title:** `{get_stickerset.set.title}\n`"
-                     f"**Sticker Short Name:** `{get_stickerset.set.short_name}`\n"
-                     f"**Official:** `{get_stickerset.set.official}`\n"
-                     f"**Archived:** `{get_stickerset.set.archived}`\n"
+    pack_emojis = [].set.archived}`\n"
                      f"**Stickers In Pack:** `{len(get_stickerset.packs)}`\n"
                      f"**Emojis In Pack:** {' '.join(pack_emojis)}")
 
@@ -184,17 +147,9 @@ async def _(event):
         file_caption = "https://t.me/RoseSupport/33801"
         if is_a_s:
             file_ext_ns_ion = "tgs"
-            file_caption = "Forward the ZIP file to @AnimatedStickersRoBot to get lottIE JSON containing the vector information."
-        sticker_set = await borg(GetStickerSetRequest(sticker_attrib.stickerset))
-        pack_file = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, sticker_set.set.short_name, "pack.txt")
-        if os.path.isfile(pack_file):
-            os.remove(pack_file)
-        # Sticker emojis are retrieved as a mapping of
-        # <emoji>: <list of document ids that have this emoji>
-        # So we need to build a mapping of <document id>: <list of emoji>
-        # Thanks, Durov
-        emojis = defaultdict(str)
-        for pack in sticker_set.packs:
+             + sticker_set.set.short_name, f"{i:03d}.{file_ext_ns_ion}")
+            ) for i, document in enumerate(sticker_set.documents)
+
             for document_id in pack.documents:
                 emojis[document_id] += pack.emoticon
         async def download(sticker, emojis, path, file):
@@ -307,31 +262,7 @@ def resize_image(image, save_locaton):
             size2new = size2 * scale
         else:
             scale = 512 / size2
-            size1new = size1 * scale
-            size2new = 512
-        size1new = math.floor(size1new)
-        size2new = math.floor(size2new)
-        sizenew = (size1new, size2new)
-        im = im.resize(sizenew)
-    else:
-        im.thumbnail(maxsize)
-    im.save(save_locaton, "PNG")
+             = size1 * scale
 
 
-def progress(current, total):
-    logger.info("Uploaded: {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
 
-
-def find_instance(items, class_or_tuple):
-    for item in items:
-        if isinstance(item, class_or_tuple):
-            return item
-    return None
-
-
-def zipdir(path, ziph):
-    # ziph is zipfile handle
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            ziph.write(os.path.join(root, file))
-            os.remove(os.path.join(root, file))
