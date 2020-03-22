@@ -116,7 +116,7 @@ async def kang(args):
             image.save(file, "PNG")
         else:
             packname += "_anim"
-            packnick
+            packnick += " (Animated)
 
 += " (Animated)"
             cmd = '/newanimated'
